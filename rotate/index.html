@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <script src='js/jquery-1.6.2.min.js'></script>
+        <script src='js/jQueryRotate.2.1.js'></script>
+        <!-- <script src='js/rotate.js'></script> -->
+    </head>
+
+    <body>
+
+        <style type='text/css' media='screen'>
+        body {
+            overflow: hidden;
+        }
+            #bar {
+                width: 300px;
+                height: 400px;
+                position: absolute;
+                right: -80px;
+                top: 30%;
+            }
+
+            #inner-img {
+                position: absolute;
+                top: 200px;
+                left: 150px;
+                width: 100px;
+                
+
+            }
+        </style>
+
+        <div id='bar'>
+            <div id='inner-img'>
+                <img src='img/panda1.jpg' width='150px' height='200px'/>
+            </div>
+        </div>
+        <script>
+          $('#bar').rotate({
+              angle: -30
+          });
+          $('#bar').css({'rotate': -30}, 500);
+            $('#bar').mouseenter(function(){
+
+               //$('#bar:not(:animated)').animate({'rotate': 60}, 500);
+                $('#bar:not(:animated)').stop(true).rotate({
+                  animateTo: 45
+               });
+            })
+            $('#bar').mouseleave(function(){
+
+               //$('#bar:not(:animated)').animate({'rotate': -30}, 500);
+                $('#bar:not(:animated)').stop(true).rotate({
+                  animateTo: -30
+               });
+            })
+        </script>
+    </body>
+</html>
