@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Map of Russia</title>
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+     <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js'></script>
+     <!-- <script type="text/javascript" src='js/jquery.jcarousel.min.js'></script> -->
+     <script type="text/javascript" src='js/jquery.easing.1.3.js'></script>
+     <script type="text/javascript" src='js/jquery.bxSlider.min.js'></script>
+     <script type="text/javascript" src="http://www.raphaeljs.com/raphael.js"></script>
+     <script type="text/javascript" charset='utf-8' src='js/russia.js'></script>
+     <!-- <script type="text/javascript" charset='utf-8' src='js/RussiaObjects.js'></script> -->
+
+     <link href='http://fonts.googleapis.com/css?family=Ubuntu+Condensed&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+
+     <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
+<body>
+    <div class='wrapper'>
+        <div class='mapheader'> Federal states of Russia </div>
+
+        <div id='canvas'>
+            <div id='paper'> </div>
+        </div>
+        <div class='info-row'> 
+            <ul id='slider'>
+                <li>
+                    <img src="img/rostov.jpg"/>
+                    <div class='desc'>
+                        <h2>Южный федеральный округ</h2>
+                        <p> Территория округа составляет 650, 7 тыс.км², то есть 3,82 % от территории Российской Федерации.</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/moscow.jpg"/>
+                    <div class='desc'>
+                        <h2>Центральный федеральный округ</h2>
+                        <p> Территория округа составляет 650, 7 тыс.км², то есть 3,82 % от территории Российской Федерации.</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/nizhniynovgorod.jpg"/>
+                    <div class='desc'>
+                        <h2>Приволжский федеральный округ</h2>
+                        <p> Территория округа составляет 650, 7 тыс.км², то есть 3,82 % от территории Российской Федерации.</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/ekaterinburg.jpg"/>
+                    <div class='desc'>
+                        <h2>Уральский федеральный округ</h2>
+                        <p> Территория округа составляет 650, 7 тыс.км², то есть 3,82 % от территории Российской Федерации.</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/novosib.jpg"/>
+                    <div class='desc'>
+                        <h2>Сибирский федеральный округ</h2>
+                        <p> Территория округа составляет 650, 7 тыс.км², то есть 3,82 % от территории Российской Федерации.</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/habarovsk.jpg"/>
+                    <div class='desc'>
+                        <h2>Дальневосточный федеральный округ</h2>
+                        <p> Территория округа составляет 650, 7 тыс.км², то есть 3,82 % от территории Российской Федерации.</p>
+                    </div>
+                </li>
+                <li>
+                    <img src="img/peter.jpg"/>
+                    <div class='desc'>
+                        <h2>Северо-Западный федеральный округ</h2>
+                        <p> Территория округа составляет 650, 7 тыс.км², то есть 3,82 % от территории Российской Федерации.</p>
+                    </div>
+                </li>
+            </ul>
+    </div>
+
+    
+    </div>
+
+    <div class='copy'> Jdavid214, based on raphaeljs Australia demo</div>
+
+ 
+<script type="text/javascript" charset='utf-8'>
+
+    $(function(){
+        var slider = $('#slider').bxSlider({
+            mode: 'fade',
+            speed: 200,
+            controls: false
+        });
+    $('.mapheader').show('fold', {}, 700);
+      $('.info-row').hide();
+
+        var R = Raphael("paper", 960, 600);
+        var defaultStyle = {
+            fill: "#333",
+            cursor: "pointer",
+            stroke: "#999",
+            "stroke-width": 1,
+            "stroke-linejoin": "round"
+        };
+
+        var activeStyle = {
+            fill: "#fff",
+            cursor: "pointer",
+            stroke: "#333",
+            "stroke-width": 1,
+            "stroke-linejoin": "round"
+        };
+
+        var rm = R.set();
+
+        var i = 0,
+            prevSt,
+            currentSt;
+          for(var federalState in russiaMap) {
+            console.log(federalState);
+            var st = R.path(russiaMap[federalState]).attr(defaultStyle);
+
+            (function(st, i){
+                st.data('i', i );
+                st.click(function(){
+
+                    $('.info-row:hidden').show();
+                    if (prevSt) prevSt.animate(defaultStyle, 100);
+                    slider.goToSlide(i);
+                    st.animate(activeStyle, 100);
+                    prevSt = st;
+                    currentSt = st;
+                    console.log(i);
+                    
+                });
+            })(st, i);
+       
+            rm.push(st);
+            i++;
+        }
+
+        var bbox = rm.getBBox();
+        R.setViewBox(bbox.x, bbox.y, bbox.width, bbox.height);
+    });
+        
+    </script>
+</body>
+</html>
