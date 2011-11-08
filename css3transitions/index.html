@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/jquery.hotkeys.js"></script>
+</head>
+<style type="text/css">
+    * {
+        margin: 0px;
+        padding: 0px;
+        line-height: 1.3;
+        font-family: Helvetica, Arial, sans-serif;
+    }
+
+    #screen .popup {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        background: rgba(255, 255, 255, 0.8);
+        z-index: 4;
+        display: none;
+    }
+
+    #tip {
+        width: 500px;
+        height: 150px;
+        position: absolute;
+        background: url('img/tip.png') no-repeat;
+        top: -400px;
+        left: 50%;
+        margin-left: -250px;
+        margin-top: -75px;
+        z-index: 6;
+        -webkit-box-shadow: 0px 0px 5px 0px #666666;
+        -moz-box-shadow: 0px 0px 5px 0px #666666;
+        box-shadow: 0px 0px 5px 0px #666666;
+    }
+
+    #screen {
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+    }
+
+    .active {
+        color: #111 !important;
+    }
+
+    #info-block {
+        top: 155px;
+        width: 800px;
+        height: 600px;
+        left: -800px;
+        overflow: hidden;
+        position: absolute;
+        font-size: 0.7em;
+    }
+
+    #info-block > div {
+        position: absolute;
+        padding-top: 60px;
+        padding-left: 30px;
+        padding-right: 40px;
+    }
+
+    #info-block h2 {
+        font-size: 1.9em;
+        font-weight: normal;
+        margin-bottom: 10px;
+    }
+
+    #awards p {
+        margin-bottom: 5px;
+    }
+
+    #awards .awards-info p {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    #awards .left-awards {
+        width: 330px;
+        margin-right: 40px;
+        float: left;
+    }
+
+    #awards .right-awards {
+        width: 330px;
+        float: left;
+    }
+
+    #bio .bio-photo {
+        display: inline-block;
+        width: 240px;
+        vertical-align: top;
+        padding-right: 20px;
+        padding-top: 40px;
+    }
+
+    #bio .bio-info {
+        width: 440px;
+        display: inline-block;
+    }
+
+    .bio-info .info p:first-child {
+        text-indent: 0;
+    }
+
+    .bio-info .info p:last-child {
+        margin-top: 30px;
+    }
+
+    .bio-info .info p {
+        margin-bottom: 10px;
+        text-indent: 2em;
+    }
+
+    #menu {
+        position: absolute;
+        bottom: 10px;
+        left: 20px;
+    }
+
+    #menu a {
+        text-decoration: none;
+        color: #666;
+        font-size: 0.8em;
+        display: block;
+        position: relative;
+        top: -100px;
+        opacity: 0;
+        z-index: 5;
+    }
+
+    #menu a:hover {
+        color: #111;
+    }
+
+    li {
+        list-style-type: none;
+        position: absolute;
+    }
+
+    #header {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        z-index: 5;
+    }
+
+    #header h2 {
+        position: relative;
+        display: block;
+        top: -300px;
+        opacity: 0;
+        font-size: 40px;
+        color: #333;
+    }
+
+    #slides-container {
+        width: 100%;
+        overflow: hidden;
+        position: absolute;
+        padding-top: 155px;
+        top: 0px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+    }
+
+    #data {
+        display: none;
+    }
+
+    #data li {
+        top: 0px;
+    }
+
+    #slides {
+        position: relative;
+        width: 1900px;
+        height: 100%;
+        left: 0px;
+        top: 0px;
+    }
+
+    .block {
+        width: 240px;
+        height: 150px;
+        background: #ccc;
+        opacity: 0;
+        top: 0px;
+        position: relative;
+        display: block;
+        float: left;
+        margin-right: 1px;
+        margin-bottom: 1px;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
+</style>
+<body>
+<div id="screen">
+<div class='popup'>
+    <div id='tip'></div>
+</div>
+
+<div id="header">
+    <h2><img src="img/logo.png" alt=""></h2>
+</div>
+<div id="info-block">
+    <div id="downloads">
+        <h2>DOWNLOADS</h2>
+
+        <p>Select from the PDF files below to view Andreas Smetana's Portfolio</p>
+
+    </div>
+    <div id='awards'>
+        <div class='awards-info'>
+            <h2>AWARDS</h2>
+
+            <p>The following list of awards have been merited to Andreas Smetana for his professional and personal
+                photography as well as for the use of his commissioned and personal images in various print media
+                campaigns.
+            </p>
+
+        </div>
+
+        <div class='left-awards'>
+            <p>NEW YORK FESTIVAL AWARDS 2010 <br>
+                GOLD for print. Royal Australian Navy</p>
+
+            <p>CANNES LIONS INTERNATIONAL AWARDS 2010 <br>
+                BRONZE Outdoor Lions. Royal Australian Navy</p>
+
+            <p>LUCIE AWARDS <br>
+                Nomination - International Photographer of the year</p>
+
+            <p>ARCHIVE <br>
+                Ranking - International <br>
+                Over the last 10 years Andreas has ranked #4 to #12</p>
+
+            <p>CAMPAIGN: MTV Snoop <br>
+                AWARD: Award awards - 2 GOLDS, 2 SILVER and 4 BRONZE</p>
+
+            <p>CAMPAIGN: Connex <br>
+                AWARD: Cannes (global) - BRONZE <br>
+                Award awards (Australasia) – SILVER <br>
+                Caxtons – BEST Campaign, BEST individual ad <br>
+                New York Festival (global) – SILVER <br>
+                MADC (Melbourne Advertising and Design Club) – SILVER & BRONZE</p>
+
+            <p>CAMPAIGN: WWF – World Wildlife Foundation <br>
+                AWARD: Clio – Finalist <br>
+                Award awards – Bronze <br>
+                London International Award – Finalist <br>
+                The Work – in the book</p>
+
+            <p>IMAGE: Xbox <br>
+                AWARD: 2008 China Shooting Award – GOLD <br>
+                Best International Photographer</p>
+
+        </div>
+
+        <div class='right-awards'>
+            <p>IMAGE: New Audi A3 Turbo <br>
+                AWARD: London International Advertising Awards - FINALIST <br>
+                IMAGE: Levi Strauss <br>
+                AWARD: Communication Arts AWARD OF EXCELLENCE IN PHOTOGRAPHY</p>
+
+            <p>IMAGE: Woman with trolley <br>
+                AWARD: Urbanscape with figures - GOLD</p>
+
+            <p>AWARD: AIPP (Australian Professional Photography Awards) - SILVER</p>
+
+            <p>AWARD: AIPP (Australian Professional Photography Awards) – GOLD – 2 years running</p>
+
+            <p>The Fuji ACMP Australian Photographers Collection - Acceptance of photographs into The Australian
+                Photographers Collection: <br>
+                Collection 4 <br>
+                Collection 6 <br>
+                Collection 7 <br>
+                Collection 8 <br>
+                Collection 9 <br>
+                Collection 10</p>
+
+            <p>AWARD: Photography Masters Cup International Colour <br>
+                Awards – HONOURY COLOUR MASTER for Nominee in Advertising</p>
+
+            <p>AOP LONDON <br>
+                Chiniese Soldiers-SILVER</p>
+
+        </div>
+
+
+    </div>
+    <div id="bio">
+        <div class='bio-photo'><img src='img/andreas_bio.jpg' alt='andreas smetana'></div>
+        <div class='bio-info'>
+            <h2>BIO</h2>
+
+            <div class='info'>
+                <p>Andreas was born in Austria and lived in Innsbruck where he worked as a photographer until the age of
+                    26.
+                    After forming his own studio at just 23 Andreas continued to work for a further 3 years before he
+                    decided it
+                    was time to move on to Sydney, Australia.</p>
+
+                <p>Armed with his experience as a successful young advertising photographer, Andreas moved quickly
+                    becoming
+                    one
+                    of Australia’s most popular emerging talents. His work began to gain momentum, not just locally but
+                    also
+                    internationally, now working with some of the biggest names and best creative’s in the industry.</p>
+
+                <p>Andreas has been recognized for his work globally, winning awards at some of the most prestigious
+                    shows
+                    around the world. This has helped him forge strong relationships with international producers and
+                    agents
+                    who
+                    now represent Andreas all over the world: America, United Kingdom, Europe and most of Asia.</p>
+
+                <p>Andreas’s versatility in shooting a wide variety of genres has made him one of Australia’s most
+                    sought
+                    after
+                    photographers. His passion and energy is inspirational, making him a fun and unexpected person to
+                    work
+                    with.
+                    It is this combination that has made Andreas “one of the most published photographers” in Archive
+                    Magazine
+                    within the last 10 years.</p>
+
+                <p>Andreas has also somehow managed to chase his other dreams whilst doing what he loves. When not
+                    standing
+                    behind a camera and directing people all over the place in his heavy accent, Andreas loves to spend
+                    time
+                    relaxing with his beautiful wife Rachel and little boy Felix. Andreas also has a love affair with
+                    sailing
+                    which is great given his home on “Scotland Island” in Sydney’s North Coast is completely surrounded
+                    by
+                    water.</p>
+
+                <p>He hopes that one day he will become a fulltime “Sailboat Captain”, but for now his focus is simply
+                    sailing
+                    through the heads and into the open sea. His only wish, that his wife felt the same about sailing as
+                    he
+                    does.</p>
+
+                <p>Andreas Smetana: Husband, Father, Photographer and Sailboat Captain.</p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+</div>
+
+<div id="menu">
+    <a href="#" data-slide='bio'>BIO</a>
+    <a href="#" data-slide='awards'>AWARDS</a>
+    <a href="#" data-slide='downloads'>DOWNLOADS</a>
+    <a href="#">CLIENTS</a>
+    <a href="#">STUDIO</a>
+    <a href="#">CONTACT</a>
+</div>
+<div id="data">
+    <li>
+        <div class='block'>
+            <img src="img/small/0005.jpg" alt="">
+        </div>
+        <div class='block'>
+            <img src="img/small/0006.jpg" alt="">
+        </div>
+        <div class='block'>
+            <img src="img/small/0007.jpg" alt="">
+        </div>
+        <div class='block'>
+            <img src="img/small/0008.jpg" alt="">
+        </div>
+        <div class='block'>
+            <img src="img/small/0009.jpg" alt="">
+        </div>
+        <div class='block'>
+            <img src="img/small/0010.jpg" alt="">
+        </div>
+        <div class='block'><img src="img/small/0004.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0003.jpg" alt=""></div>
+
+    </li>
+
+    <li>
+        <div class='block'><img src="img/small/0013.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0014.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0015.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0016.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0017.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0018.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0019.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0034.jpg" alt=""></div>
+    </li>
+    <li>
+        <div class='block'><img src="img/small/0020.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0021.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0022.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0023.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0024.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0025.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0033.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0035.jpg" alt=""></div>
+
+    </li>
+    <li>
+        <div class='block'><img src="img/small/0044.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0045.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0046.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0047.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0048.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0049.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0050.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0051.jpg" alt=""></div>
+
+    </li>
+    <li>
+        <div class='block'><img src="img/small/0036.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0037.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0038.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0039.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0040.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0041.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0042.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0043.jpg" alt=""></div>
+
+    </li>
+    <li>
+        <div class='block'><img src="img/small/0052.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0053.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0054.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0055.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0056.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0057.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0058.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0059.jpg" alt=""></div>
+
+    </li>
+    <li>
+        <div class='block'><img src="img/small/0027.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0028.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0029.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0030.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0031.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0032.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0002.jpg" alt=""></div>
+        <div class='block'><img src="img/small/0001.jpg" alt=""></div>
+
+    </li>
+
+</div>
+<div id="slides-container">
+
+    <ul id="slides"></ul>
+</div>
+</div>
+
+
+</body>
+
+<script type="text/javascript">
+
+
+$(function() {
+
+    $('#slides').css({
+        width: 241 * 8
+    });
+
+    var speed = 0,
+            dx = 20,
+            rowsData = $('#data li'),
+            sc = $('#slides-container'),
+            info = $('#info-block'),
+            slidesContainer = $('#slides-container'),
+            slides = $('#slides'),
+            isMouseOver = false,
+            isDecreasing = false,
+            slidesWidth = slides.width(),
+            windowWidth = $(window).width();
+
+
+    function decreaseSpeed() {
+        if (!isMouseOver) {
+            if (speed > 0) speed--;
+            if (speed < 0) speed++;
+        }
+        setTimeout(decreaseSpeed, 100);
+    }
+
+    slidesContainer.mouseenter(function(e) {
+        if (info.offset().left == 0) {
+            infoManager.hide();
+        }
+        console.log('mouse enter');
+    });
+
+    slidesContainer.mouseleave(function(e) {
+        isMouseOver = false;
+    });
+
+    slidesContainer.mousemove(function(e) {
+        var middle = slidesContainer.width() / 2,
+                direction = 1,
+                part1of5 = middle / 5;
+
+        direction = (e.clientX < middle) ? 1 : -1;
+        var offsetX = (e.clientX < middle) ? e.clientX : 2 * middle - e.clientX;
+
+        isMouseOver = true;
+        if (offsetX < part1of5) {
+            speed = direction * dx;
+        }
+        else if (offsetX < 2 * part1of5) {
+            speed = direction * (dx - 5);
+        } else if (offsetX < 3 * part1of5) {
+            speed = direction * (dx - 10);
+        } else if (offsetX < 4 * part1of5) {
+            speed = direction * (dx - 15);
+        } else if (offsetX < 5 * part1of5) {
+            isMouseOver = false;
+        }
+    });
+
+
+    function moveContainer() {
+        var offsetX = slides.offset().left + speed,
+                scWidth = slidesContainer.width();
+
+        offsetX = (offsetX > 0) ? 0 :
+                (offsetX < -slidesWidth + scWidth ) ? -slidesWidth + scWidth :
+                        offsetX;
+
+        slides.css({
+            'left': offsetX
+        });
+
+        setTimeout(moveContainer, 33);
+    }
+
+
+    var infoManager = {
+        active: false,
+        links:  $('#menu a'),
+        init: function() {
+            this.links.each(function(index) {
+                $(this).delay(index * 100).animate({
+                    opacity: 1,
+                    top: 0
+                });
+            });
+        },
+        bindListeners: function() {
+            this.links.click(function() {
+                infoManager.show();
+                var slideSelector = '#' + $(this).attr('data-slide'),
+                        slide = $(slideSelector);
+                var s = slide.fadeIn(200).siblings(':visible').fadeOut(200);
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+        },
+        show: function() {
+
+            grid.unbindHotkeys();
+            sc.animate({
+                left: 800,
+                opacity: 0.3
+            }, 300, 'easeOutCubic');
+
+            info.animate({
+                left: 0
+            }, 300, 'easeOutCubic');
+
+        },
+        hide: function() {
+            this.links.removeClass('active');
+
+            grid.bindHotkeys();
+            sc.animate({
+                left: 0,
+                opacity: 1
+            }, 300, 'easeOutCubic');
+
+            info.animate({
+                left: -800
+            }, 300, 'easeOutCubic');
+        }
+    };
+
+    var grid = {
+        rows: [],
+        rowsCount: 4,
+        unbindHotkeys: function() {
+            $(document).unbind('keyup');
+        },
+        bindHotkeys: function() {
+            $(document).bind('keyup', 'down', function() {
+                grid.prev();
+            })
+            $(document).bind('keyup', 'up', function() {
+                grid.next();
+            })
+        },
+        moveRow: function (row, offsetY) {
+
+            row.find('.block').each(function() {
+                $(this).delay(grid.delay()).animate({
+                    top: offsetY
+                });
+            });
+        },
+        delay: function() {
+            return Math.random() * 500;
+        },
+        init: function(data) {
+            for (var i = this.rowsCount-1 ; i >= 0; i--) {
+                this.activateRow(rowsData.eq(i), 'top', i);
+            }
+        },
+        deactivateRow: function (row, direction) {
+            var rowBlocks = row.find('.block'),
+                    data = $('#data'),
+                    count = rowBlocks.length;
+
+            function onEnd() {
+                count -= 1;
+                if (!count) {
+                    if (direction == 'top') {
+                        data.prepend(row);
+                    } else {
+                        data.append(row);
+                    }
+                }
+            }
+
+            rowBlocks.each(function() {
+                $(this).delay(grid.delay()).animate({
+                    opacity: 0,
+                    top: direction == 'top' ? -500 : 1000
+                }, onEnd);
+            });
+        },
+        activateRow: function (row, direction, i) {
+            var slides = $('#slides'),
+                    rowBlocks = row.find('.block');
+
+            if (direction == 'top') {
+                slides.prepend(row);
+                rowBlocks.css('top', -500);
+            } else {
+                slides.append(row);
+                rowBlocks.css('top', 1000);
+            }
+            rowBlocks.each(function() {
+                $(this).delay(grid.delay()).animate({
+                    opacity: 0.8,
+                    top: i * 151
+                }).animate({
+                            opacity: 1
+                        }, 200);
+            });
+        },
+        next: function() {
+            var currentRows = $('#slides li');
+
+            if (currentRows.find('.block:animated').length > 0) return;
+
+
+            for (var i = 0; i < this.rowsCount; i++) {
+                if (i == this.rowsCount - 1) {
+                    this.activateRow($('#data li').first(), 'top', 0);
+                    this.deactivateRow(currentRows.last(), 'bottom');
+                    continue;
+                }
+                this.moveRow(currentRows.eq(i), (i + 1) * 151);
+
+            }
+        },
+        prev: function() {
+            var currentRows = $('#slides li');
+
+            if (currentRows.find('.block:animated').length > 0) return;
+
+            for (var i = 0; i < this.rowsCount; i++) {
+                if (i == 0) {
+                    this.activateRow($('#data li').last(), 'bottom', this.rowsCount - 1);
+                    this.deactivateRow(currentRows.first(), 'top');
+                    continue;
+                }
+                this.moveRow(currentRows.eq(i), (i - 1) * 151);
+            }
+        }
+    }
+
+
+    $('#slides .block').live('click', function() {
+        $('#menu a, #slides .block, #header h2').each(function() {
+            $(this).delay(Math.random() * 500).animate({
+                opacity: 0,
+                top: 2000
+            }, Math.random() * 500 + 500);
+        });
+    });
+    
+    grid.init();
+    infoManager.init();
+
+
+
+    $('#header h2').delay(500).animate({
+        top: 20,
+        opacity: 1
+    });
+
+    $('#tip').click(function(){
+            this.animate({
+            top: '-100px'
+        }, 600, 'easeOutCubic');
+    }).delay(500).animate({
+        top: '50%'
+    }, 600, 'easeOutCubic');
+
+    $('#screen .popup').fadeIn(1000).click(function() {
+        grid.bindHotkeys();
+        infoManager.bindListeners();
+        $(this).fadeOut(300);
+    });
+
+    moveContainer();
+    decreaseSpeed();
+
+})
+
+
+</script>
+</html>
