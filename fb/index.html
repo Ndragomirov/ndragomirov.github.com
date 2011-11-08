@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+    <script type="text/javascript" src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.js'></script>
+    <script type="text/javascript" src='fancybox/jquery.fancybox-1.3.4.pack.js'></script>
+    <link rel="stylesheet" href="fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" />
+</head>
+<body>
+
+<style type="text/css">
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    .playDiv {
+        background: url('img/play1.png') no-repeat;
+        z-index: 2;
+        width: 230px;
+        height: 160px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .play > div {
+        display: inline-block;
+        position: relative;
+    }
+
+    .play img {
+        width: 230px;
+        height: 170px;
+        top: 0;
+        left: 0;
+    }
+
+</style>
+
+<a href="#" class='play'>
+    <div>
+        <img src="img/stop_01.jpg">
+    </div>
+</a>
+
+
+<a href="#" class='play'>
+    <div>
+        <img src="img/stop_01.jpg">
+    </div>
+</a>
+
+
+<script type="text/javascript">
+
+    $(".play").mouseenter(function(){
+        var playDiv = $('<div/>');
+        playDiv.addClass('playDiv');
+        $(this).children('div').prepend(playDiv);
+    });
+
+    $(".play").mouseleave(function(){
+        $(this).find('.playDiv').remove();
+    });
+    $(".play").fancybox({
+		'padding'		: 0,
+		'autoScale'		: false,
+		'transitionIn'	: 'none',
+		'transitionOut'	: 'none',
+		'width'			: 720,
+		'height'		: 576,
+		'href'			: 'http://vimeo.com/moogaloop.swf?clip_id=31788199',
+		'type'			: 'swf'
+	});
+
+</script>
+
+</body>
+</html>
