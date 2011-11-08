@@ -16,7 +16,6 @@
     }
     .playDiv {
         background: url('img/play1.png') no-repeat;
-        z-index: 2;
         width: 230px;
         height: 160px;
         position: absolute;
@@ -64,10 +63,12 @@
         $(this).find('.playDiv').remove();
     });
     $(".play").fancybox({
-		'padding'		: 0,
+		'padding'		: 10,
+        'overlayOpacity': 0.9,
+        'overlayColor'  : '#222',
 		'autoScale'		: false,
-		'transitionIn'	: 'none',
-		'transitionOut'	: 'none',
+		'transitionIn'	: 'elastic',
+		'transitionOut'	: 'elastic',
 		'width'			: 720,
 		'height'		: 576,
 		'href'			: 'http://vimeo.com/moogaloop.swf?clip_id=31788199',
