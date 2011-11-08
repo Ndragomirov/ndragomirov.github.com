@@ -23,12 +23,24 @@
         left: 0;
     }
 
-    .play > div {
+    .play {
+        text-decoration: none;
+        cursor: pointer;
         display: inline-block;
+    }
+
+    .play:hover {
+        text-decoration: none;
+    }
+
+    .play > div {
         position: relative;
+        zoom: 1;
+        *display: inline;
     }
 
     .play img {
+        border: none;
         width: 230px;
         height: 170px;
         top: 0;
