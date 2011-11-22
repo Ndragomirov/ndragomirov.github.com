@@ -1,0 +1,31 @@
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    .playDiv {
+        background: url('../img/play1.png') no-repeat;
+        width: 230px;
+        height: 160px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .play {
+        cursor: pointer;
+        display: inline-block;
+    }
+
+    .play > div {
+        position: relative;
+        zoom: 1; /* inline block */
+        *display: inline;
+    }
+
+    .play img {
+        border: none; /*ie blue border fix */
+        width: 230px;
+        height: 170px;
+        top: 0;
+        left: 0;
+    }
