@@ -1,6 +1,5 @@
 (function () {
-    var aboutText = "Hi,>im Nikita Dragomirov>Contact me:>email: jdavid214@gmail.com>skype: ndragomirov".replace( /\s/g, "\u2009" ).split( "" );
-
+    var aboutText = "Hi,>im Nikita Dragomirov>Contact me:>email>jdavid214@gmail.com>skype>ndragomirov".replace( /\s/g, "\u2009" ).split( "" );
     var $contact = $( "#contact" );
     aboutText.forEach( function ( s ) {
         if ( s == ">" ) {
@@ -30,8 +29,7 @@
             var t = $( this );
             var delay = i * 10;
             t.css( {
-                top: Math.random() * 500
-//                "-webkit-transition": Math.random() * 500 + "ms"
+                top : Math.random() * 500
             } );
             setTimeout( function () {
                 t.addClass( 'baseline' );
