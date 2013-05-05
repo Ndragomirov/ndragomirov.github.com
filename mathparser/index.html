@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        html, body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 12px;
+            padding: 10px;
+        }
+
+        .node circle {
+            fill: #fff;
+            stroke: steelblue;
+            stroke-width: 1.5px;
+        }
+
+        .node {
+            font: 10px sans-serif;
+        }
+
+        .link {
+            fill: none;
+            stroke: #ccc;
+        }
+
+        #math-expr {
+            padding: 10px;
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+<input type="text" id="math-expr" maxlength="200" placeholder="Введите мат. выражение, например: (x+5)^2/(y+4) <= 5 "
+       autofocus="true">
+<button id="math-convert">convert</button>
+
+<h2>Графическое представление:</h2>
+
+<div style="font-size: 300%;" id="out">
+
+</div>
+
+
+<h2>MathML код:</h2>
+<div id="mathmlcode">
+
+</div>
+
+<h2>Дерево разбора:</h2>
+
+<script type="text/javascript" src="parser.js"></script>
+<script type="text/javascript"
+        src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type="text/javascript" src="lib/d3.js"></script>
+<script type="text/javascript" src="d3test.js"></script>
+
+</body>
+</html>
