@@ -21,6 +21,8 @@ If you see this page for too long time, then click this link <a id="redirect-url
   // access again
   var redirect = 'chrome-extension://nlmbdmpjmlijibeockamioakdpmhjnpk/oauth2/oauth2.html' + params;
   document.querySelector("#redirect-url").href = redirect;
+  
+  window.location.replace(redirect);
 </script>
 </body>
 </html>
