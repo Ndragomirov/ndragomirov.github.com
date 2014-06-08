@@ -5,24 +5,6 @@
 </head>
 <body> 
 Hello!
-<a id="redirect-url" href='#'>Click here!</a> 
-<script>
-  var url = window.location.href;
-  var params = '?';
-  var index = url.indexOf(params);
-  if (index > -1) {
-    params = url.substring(index);
-  }
-  
-  // Also append the current URL to the params
-  params += '&from=' + encodeURIComponent(url);
-  
-  // Redirect back to the extension itself so that we have priveledged
-  // access again
-  //var redirect = 'chrome-extension://nlmbdmpjmlijibeockamioakdpmhjnpk/oauth2/oauth2.html' + params;
-  //document.querySelector("#redirect-url").href = redirect;
-  
-  //window.location.replace(redirect);
 </script>
 </body>
 </html>
